@@ -29,7 +29,7 @@ public class ProductController {
     @GetMapping("/products")
     public ModelAndView listProducts() {
         Iterable<Product> products = productService.findAll();
-        ModelAndView modelAndView = new ModelAndView("phone/list");
+        ModelAndView modelAndView = new ModelAndView("product/list");
         modelAndView.addObject("products", products);
         return modelAndView;
     }
