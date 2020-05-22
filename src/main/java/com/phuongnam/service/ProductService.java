@@ -7,7 +7,7 @@ import org.springframework.data.domain.Pageable;
 import java.util.Optional;
 
 public interface ProductService {
-    Page<Product> findAll(Pageable pageable);
+    Iterable<Product> findAll();
 
     Page<Product> findAllByModelContaining(String model, Pageable pageable);
 

@@ -20,18 +20,21 @@ public class ProductController {
     private ProductService productService;
     @Autowired
     private PhoneService phoneService;
+
     @ModelAttribute("phones")
-    public Iterable<Phone> phones(){
+    public Iterable<Phone> phones() {
         return phoneService.findAll();
     }
+
     @GetMapping("/products")
-    public ModelAndView listProducts(@PageableDefault(size = 3) Pageable pageable, @RequestParam("s") Optional<String> s ){
-        Page<Product> products;
-        if(s.isPresent()){
-            products = productService.findAllByModelContaining(s.get(), pageable);
-        } else {
-            products = productService.findAll(pageable);
-        }
+    public ModelAndView listProducts(@RequestParam("s") Optional<String> s) {
+        Iterable<Product> products;
+//        if(s.isPresent()){
+//            products = productService.findAllByModelContaining(s.get());
+//        } else {
+//            products = productService.findAll();
+//        }
+        products = productService.findAll();
         ModelAndView modelAndView = new ModelAndView("/product/list");
         modelAndView.addObject("products", products);
         return modelAndView;
