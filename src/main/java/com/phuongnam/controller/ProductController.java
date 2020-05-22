@@ -27,15 +27,9 @@ public class ProductController {
     }
 
     @GetMapping("/products")
-    public ModelAndView listProducts(@RequestParam("s") Optional<String> s) {
-        Iterable<Product> products;
-//        if(s.isPresent()){
-//            products = productService.findAllByModelContaining(s.get());
-//        } else {
-//            products = productService.findAll();
-//        }
-        products = productService.findAll();
-        ModelAndView modelAndView = new ModelAndView("/product/list");
+    public ModelAndView listProducts() {
+        Iterable<Product> products = productService.findAll();
+        ModelAndView modelAndView = new ModelAndView("phone/list");
         modelAndView.addObject("products", products);
         return modelAndView;
     }
